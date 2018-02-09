@@ -1,4 +1,6 @@
 {
+    "name": "phptopup/symfony-form",
+    "description": "Symfony Form reference generator",
     "type": "project",
     "license": "proprietary",
     "require": {
