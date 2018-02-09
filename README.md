@@ -1,2 +1,2 @@
-# symfony-form
-Unofficial Symfony form page
+# Symfony Form
+All about Symfony Form component and its ecosystem.
