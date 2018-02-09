@@ -1,0 +1,9 @@
+{
+  "types": [
+    {
+      "name": "FormType",
+      "class": "Symfony/Component/Form/Extension/Core/Type/FormType",
+      "api_link": "http://api.symfony.com/4.0/Symfony/Component/Form/Extension/Core/Type/FormType.html"
+    }
+  ]
+}
