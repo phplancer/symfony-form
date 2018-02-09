@@ -6,6 +6,7 @@
         "ext-iconv": "*",
         "symfony/console": "^4.0",
         "symfony/flex": "^1.0",
+        "symfony/form": "^4.0",
         "symfony/framework-bundle": "^4.0",
         "symfony/lts": "^4@dev",
         "symfony/webpack-encore-pack": "^1.0",
