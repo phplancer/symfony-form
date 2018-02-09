@@ -33,20 +33,24 @@ export default class Types extends React.Component {
     }
 
     render() {
-        const { error, isLoaded, types } = this.state;
+        const {error, isLoaded, types} = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
             return (
-                <ul>
-                    {types.map(type => (
-                        <li key={type.class}>
-                            <a href={type.api_link} title={type.class}>{type.name}</a>
-                        </li>
-                    ))}
-                </ul>
+                <div>
+                    <h2 id="header-2">Supported Field Types</h2>
+                    <p>The following field types are natively available in Symfony:</p>
+                    <ul>
+                        {types.map(type => (
+                            <li key={type.class}>
+                                <a href={type.api_link} title={type.class}>{type.name}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             );
         }
     }
