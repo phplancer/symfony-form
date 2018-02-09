@@ -5,7 +5,8 @@ import Types from './components/Types'
 ReactDOM.render(
     <div>
         <section className="page-header">
-            <h1 className="project-name">Form Types Reference</h1>
+            <h1 className="project-name">Symfony Form Reference</h1>
+            <h2 className="project-subject">Built-in Field Types</h2>
             <h2 className="project-tagline">Symfony comes standard with a large group of field types that cover all of the common form fields and data types you'll encounter.</h2>
 
             <a href="https://github.com/phptopup/symfony-form" className="btn">View on GitHub</a>
