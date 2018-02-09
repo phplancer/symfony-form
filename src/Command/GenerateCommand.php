@@ -12,6 +12,8 @@
 namespace App\Command;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generate the form reference data files.
@@ -20,5 +22,10 @@ use Symfony\Component\Console\Command\Command;
  */
 class GenerateCommand extends Command
 {
-    protected static $defaultName = 'generate';
+    protected static $defaultName = 'generate:reference';
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+
+    }
 }
