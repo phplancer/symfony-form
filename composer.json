@@ -13,6 +13,8 @@
         "symfony/form": "^4.0",
         "symfony/framework-bundle": "^4.0",
         "symfony/lts": "^4@dev",
+        "symfony/security-csrf": "^4.0",
+        "symfony/validator": "^4.0",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "^4.0"
     },
