@@ -7,12 +7,12 @@ class App extends React.Component {
         super(props);
         this.state = {
             error: null,
-            isLoaded: false,
+            is_loaded: false,
             version: null,
             updated_at: null,
             types: [],
-            typeExtensions: [],
-            typeGuessers: []
+            type_extensions: [],
+            type_guessers: []
         };
     }
 
@@ -22,7 +22,7 @@ class App extends React.Component {
             .then(
                 (result) => {
                     this.setState({
-                        isLoaded: true,
+                        is_loaded: true,
                         version: result.version,
                         updated_at: result.updated_at,
                         types: result.types,
@@ -35,7 +35,7 @@ class App extends React.Component {
                 // exceptions from actual bugs in components.
                 (error) => {
                     this.setState({
-                        isLoaded: true,
+                        is_loaded: true,
                         error
                     });
                 }
@@ -43,12 +43,12 @@ class App extends React.Component {
     }
 
     render() {
-        const {error, isLoaded, version, updated_at, types, type_extensions, type_guessers} = this.state;
+        const {error, is_loaded, version, updated_at, types, type_extensions, type_guessers} = this.state;
 
         if (error) {
             return <div>Error: {error.message}</div>;
         }
-        if (!isLoaded) {
+        if (!is_loaded) {
             return '';
         }
 
