@@ -8,10 +8,10 @@ export default class Type extends React.Component {
             name: props.name,
             cls: props.cls,
             api: props.api,
-            block_prefix: props.definition.block_prefix,
-            options: props.definition.options,
-            parent_types: props.definition.parent_types,
-            type_extensions: props.definition.type_extensions,
+            block_prefix: props.block_prefix,
+            options: props.options,
+            parent_types: props.parent_types,
+            type_extensions: props.type_extensions,
         };
     }
 

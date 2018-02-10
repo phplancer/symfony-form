@@ -62,7 +62,7 @@ class GenerateCommand extends Command
 
         // Setting options metadata for each type
         foreach ($data['types'] as $i => $metadata) {
-            $data['types'][$i]['definition'] = $this->getTypeOptions($metadata['class']);
+            $data['types'][$i] += $this->getTypeOptions($metadata['class']);
         }
 
         file_put_contents(__DIR__.'/../../docs/data.json', json_encode($data));

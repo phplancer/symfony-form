@@ -93,7 +93,15 @@ class App extends React.Component {
                 </section>
                 <section className="main-content">
                     {types.map(type => (
-                        <Type key={type.name} name={type.name} cls={type.class} api={type.api} definition={type.definition} />
+                        <Type key={type.name}
+                              name={type.name}
+                              cls={type.class}
+                              api={type.api}
+                              block_prefix={type.block_prefix}
+                              options={type.options}
+                              parent_types={type.parent_types}
+                              type_extensions={type.type_extensions}
+                        />
                     ))}
 
                     <footer className="site-footer">
