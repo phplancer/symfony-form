@@ -1,18 +1,69 @@
 @import "jekyll-theme-cayman";
 
-.project-subject {
-  margin-bottom: 0.1rem;
-  font-weight: normal;
+ul > li,
+ol > li {
+  margin-bottom: 0.5rem;
+}
 
-  @include large {
-    font-size: 2.25rem;
+h3 {
+  margin-top: 3rem !important;
+  color: $body-link-color !important;
+  font-weight: bold;
+}
+
+.required {
+  font-weight: bold;
+}
+
+.option-group {
+  font-size: 1rem;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid $table-border-color;
+}
+
+.option-definition {
+  color: $code-bg-color;
+  background-color: $code-text-color;
+  border-radius: 0 0 0.3rem 0.3rem;
+  margin-top: -1px;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 0.8rem;
+  padding: 0.7rem 1rem;
+  position: absolute;
+  max-width: 450px;
+  min-width: 240px;
+}
+
+.selected {
+  code {
+    color: $code-bg-color;
+    background-color: #435c67;
+    border-radius: 0.3rem 0.3rem 0 0;
   }
 
-  @include medium {
-    font-size: 1.25rem;
+  ul > li {
+    margin-bottom: 0;
   }
+}
 
-  @include small {
-    font-size: 1rem;
-  }
+.mr-0-5 {
+  margin-right: 0.5rem !important;
+}
+
+.mt-2 {
+  margin-top: 2rem !important;
+}
+
+.mt-3 {
+  margin-top: 3rem !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.float-left {
+  float: left !important;
 }

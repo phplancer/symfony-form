@@ -93,7 +93,7 @@ a {
   background-image: linear-gradient(120deg, $header-bg-color-secondary, $header-bg-color);
 
   @include large {
-    padding: 5rem 6rem;
+    padding: 4rem 6rem;
   }
 
   @include medium {
@@ -148,7 +148,7 @@ a {
   }
 
   @include large {
-    max-width: 64rem;
+    max-width: 81rem;
     padding: 2rem 6rem;
     margin: 0 auto;
     font-size: 1.1rem;
@@ -274,21 +274,27 @@ a {
   }
 
   table {
-    display: block;
     width: 100%;
     overflow: auto;
     word-break: normal;
     word-break: keep-all; // For Firefox to horizontally scroll wider tables.
     -webkit-overflow-scrolling: touch;
 
-    th {
-      font-weight: bold;
+    caption {
+      border-bottom: none !important;
     }
 
-    th,
+    caption, th {
+      font-weight: normal;
+      text-align: left;
+      background-color: $code-bg-color;
+    }
+
+    caption, th,
     td {
       padding: 0.5rem 1rem;
       border: 1px solid $table-border-color;
+      vertical-align: top;
     }
   }
 
