@@ -67,3 +67,26 @@ h3 {
 .float-left {
   float: left !important;
 }
+
+.build-info-container {
+  background-color: $code-text-color;
+
+  > .build-info {
+    font-size: 0.8rem;
+    color: white;
+
+    @include large {
+      max-width: 81rem;
+      padding: 3rem 6rem;
+      margin: 0 auto;
+    }
+
+    @include medium {
+      padding: 2rem 4rem;
+    }
+
+    @include small {
+      padding: 2rem 1rem;
+    }
+  }
+}
