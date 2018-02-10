@@ -6,7 +6,7 @@
         "sass-loader": "^6.0.6"
     },
     "license": "MIT",
-    "private": true,
+    "private": false,
     "scripts": {
         "dev-server": "encore dev-server",
         "dev": "encore dev",
