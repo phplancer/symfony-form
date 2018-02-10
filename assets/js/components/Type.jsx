@@ -15,16 +15,16 @@ export default class Type extends React.Component {
         };
     }
 
-    static get_class_name(cls) {
+    static getClassName(cls) {
         return cls.split('\\').slice(-1)[0];
     }
 
-    render_options(options) {
+    renderOptions(options) {
         let i = 0;
         let result = [];
         for (let cls in options) {
             if (cls !== this.state.cls) {
-                const className = Type.get_class_name(cls);
+                const className = Type.getClassName(cls);
                 result.push(
                     <div key={cls} className="option-group">
                         <a href={'#' + className}>{className}</a>
@@ -32,9 +32,10 @@ export default class Type extends React.Component {
                 );
             }
             options[cls].map(option => {
+                const id = '#' + Type.getClassName(this.state.cls) + '/' + option.name;
                 result.push(
                     <Option key={i++}
-                            class={this.state.cls}
+                            cls={this.state.cls}
                             name={option.name}
                             required={option.required}
                             is_lazy={option.is_lazy}
@@ -42,13 +43,14 @@ export default class Type extends React.Component {
                             default_value={option.default}
                             allowed_types={option.allowed_types}
                             allowed_values={option.allowed_values}
+                            show_definition={id === window.location.hash}
                     />)
             })
         }
         return result;
     }
 
-    render_parent_types(col_span) {
+    renderParentTypes(col_span) {
         const parent_types = this.state.parent_types;
 
         if (0 === parent_types.length) {
@@ -62,7 +64,7 @@ export default class Type extends React.Component {
             <tr key={1}>
                 <td colSpan={col_span}>
                     {parent_types.map((parent_class, index) => {
-                        const className = Type.get_class_name(parent_class);
+                        const className = Type.getClassName(parent_class);
                         return <a key={index} href={'#' + className} className="mr-0-5"><code>{className}</code></a>
                     })}
                 </td>
@@ -70,7 +72,7 @@ export default class Type extends React.Component {
         ]
     }
 
-    render_type_extensions(col_span) {
+    renderTypeExtensions(col_span) {
         const type_extensions = this.state.type_extensions;
 
         if (0 === type_extensions.length) {
@@ -84,7 +86,7 @@ export default class Type extends React.Component {
             <tr key={1}>
                 <td colSpan={col_span}>
                     {type_extensions.map((extensions_class, index) => {
-                        const className = Type.get_class_name(extensions_class);
+                        const className = Type.getClassName(extensions_class);
                         return <a key={index} href={'#' + className} className="float-left mr-0-5"><code>{className}</code></a>;
                     })}
                 </td>
@@ -118,13 +120,13 @@ export default class Type extends React.Component {
                     </thead>
                     <tbody>
                     <tr>
-                        {0 !== options.own.length && <td>{this.render_options(options.own)}</td>}
-                        {0 !== options.overridden.length && <td>{this.render_options(options.overridden)}</td>}
-                        {0 !== options.parent.length && <td>{this.render_options(options.parent)}</td>}
-                        {0 !== options.extension.length && <td>{this.render_options(options.extension)}</td>}
+                        {0 !== options.own.length && <td>{this.renderOptions(options.own)}</td>}
+                        {0 !== options.overridden.length && <td>{this.renderOptions(options.overridden)}</td>}
+                        {0 !== options.parent.length && <td>{this.renderOptions(options.parent)}</td>}
+                        {0 !== options.extension.length && <td>{this.renderOptions(options.extension)}</td>}
                     </tr>
-                    {this.render_parent_types(col_span)}
-                    {this.render_type_extensions(col_span)}
+                    {this.renderParentTypes(col_span)}
+                    {this.renderTypeExtensions(col_span)}
                     </tbody>
                 </table>
             </div>

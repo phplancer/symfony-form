@@ -29,6 +29,13 @@ class App extends React.Component {
                         type_extensions: result.type_extensions,
                         type_guessers: result.type_guessers
                     });
+
+                    // after update state, check by hash to scroll in
+                    const hash = window.location.hash;
+                    if (hash) {
+                        window.location.hash = null;
+                        window.location.hash = hash;
+                    }
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
