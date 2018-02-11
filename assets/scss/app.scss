@@ -15,9 +15,16 @@ h3 {
   font-weight: bold;
 }
 
-.option-link {
-  position: absolute;
-  margin-left: -16px;
+.option-div {
+  > .option-link {
+    position: absolute;
+    margin-left: -16px;
+    opacity: 0;
+  }
+
+  &:hover > .option-link {
+    opacity: 1;
+  }
 }
 
 .option-group {
