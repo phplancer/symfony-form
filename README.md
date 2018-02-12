@@ -1,5 +1,5 @@
-# Symfony Form Reference Generator
-All about Symfony Form component and its ecosystem.
+# Symfony Forms Reference Generator
+All about Symfony Forms and its ecosystem.
 
 TODO:
 - [ ] Add Type Extensions reference
