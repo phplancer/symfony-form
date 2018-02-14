@@ -44,7 +44,7 @@ class GenerateCommand extends Command
     {
         $data = [
             'version' => Kernel::VERSION,
-            'updated_at' => date('r'),
+            'updated_at' => date('D, d M Y'),
             'composer_info' => $this->getComposerInfo(),
         ];
 
