@@ -17,6 +17,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 /**
  * Generate the form reference file.
@@ -43,6 +45,7 @@ class GenerateCommand extends Command
         $data = [
             'version' => Kernel::VERSION,
             'updated_at' => date('r'),
+            'composer_info' => $this->getComposerInfo(),
         ];
 
         $result = $this->runDebugFormCommand();
@@ -109,6 +112,18 @@ class GenerateCommand extends Command
         }
 
         return $result;
+    }
+
+    private function getComposerInfo()
+    {
+        $process = new Process('composer info');
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        return $process->getOutput();
     }
 
     private function getClassName(string $class): string

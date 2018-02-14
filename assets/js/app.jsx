@@ -10,6 +10,7 @@ class App extends React.Component {
             is_loaded: false,
             version: null,
             updated_at: null,
+            composer_info: null,
             types: [],
             type_extensions: [],
             type_guessers: []
@@ -25,6 +26,7 @@ class App extends React.Component {
                         is_loaded: true,
                         version: result.version,
                         updated_at: result.updated_at,
+                        composer_info: result.composer_info,
                         types: result.types,
                         type_extensions: result.type_extensions,
                         type_guessers: result.type_guessers
@@ -50,7 +52,11 @@ class App extends React.Component {
     }
 
     render() {
-        const {error, is_loaded, version, updated_at, types, type_extensions, type_guessers} = this.state;
+        const {
+            error, is_loaded,
+            version, updated_at, composer_info,
+            types, type_extensions, type_guessers
+        } = this.state;
 
         if (error) {
             return <div>Error: {error.message}</div>;
@@ -69,6 +75,7 @@ class App extends React.Component {
                     <a href="https://github.com/phptopup/symfony-form/zipball/master" className="btn">Download .zip</a>
                     <a href="https://github.com/phptopup/symfony-form/tarball/master" className="btn">Download .tar.gz</a>
                 </section>
+
                 <section className="main-content">
                     <h2 id="types">Built-in Field Types</h2>
                     <div style={{display: 'inline-block'}}>
@@ -90,14 +97,15 @@ class App extends React.Component {
                             <a key={type.name} href={'#' + type.name} title={type.class} className="float-left mr-0-5"><code>{type.name}</code></a>
                         ))}
                     </div>
-
                 </section>
+
                 <section className="build-info-container">
                     <div className="build-info">
-                        <div>Symfony version: <strong>{version}</strong></div>
+                        <div>Symfony version: <strong>{version}</strong> <span className="composer-info-container"> ( <span className="composer-info-label">Composer Info</span> ) <div className="composer-info"><pre><code>{composer_info}</code></pre></div></span></div>
                         <div>Last update: <strong>{updated_at}</strong></div>
                     </div>
                 </section>
+
                 <section className="main-content">
                     {types.map(type => (
                         <Type key={type.name}

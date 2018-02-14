@@ -11,6 +11,24 @@ h3 {
   font-weight: bold;
 }
 
+.composer-info-container {
+  > .composer-info-label {
+    text-decoration: white underline;
+  }
+
+  > .composer-info {
+    display: none;
+    > pre {
+      margin-top: -0.1rem;
+      padding-top: 1.1rem;
+    }
+  }
+
+  &:hover > .composer-info {
+    display: block;
+  }
+}
+
 .required {
   font-weight: bold;
 }
