@@ -1,18 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import Option from './Option'
 
-export default class Type extends React.Component {
+export default class Type extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            name: props.name,
-            cls: props.cls,
-            api: props.api,
-            block_prefix: props.block_prefix,
-            options: props.options,
-            parent_types: props.parent_types,
-            type_extensions: props.type_extensions,
-        };
     }
 
     static getClassName(cls) {
@@ -23,7 +15,7 @@ export default class Type extends React.Component {
         let i = 0;
         let result = [];
         for (let cls in options) {
-            if (cls !== this.state.cls) {
+            if (cls !== this.props.cls) {
                 const className = Type.getClassName(cls);
                 result.push(
                     <div key={cls} className="option-group">
@@ -32,26 +24,27 @@ export default class Type extends React.Component {
                 );
             }
             options[cls].map(option => {
-                const id = '#' + Type.getClassName(this.state.cls) + '/' + option.name;
+                const id = '#' + Type.getClassName(this.props.cls) + '/' + option.name;
                 result.push(
-                    <Option key={i++}
-                            cls={this.state.cls}
-                            name={option.name}
-                            required={option.required}
-                            is_lazy={option.is_lazy}
-                            has_normalizer={option.has_normalizer}
-                            default_value={option.default}
-                            allowed_types={option.allowed_types}
-                            allowed_values={option.allowed_values}
-                            show_definition={id === window.location.hash}
+                    <Option
+                        key={i++}
+                        cls={this.props.cls}
+                        name={option.name}
+                        required={option.required}
+                        is_lazy={option.is_lazy}
+                        has_normalizer={option.has_normalizer}
+                        default_value={option.default}
+                        allowed_types={option.allowed_types}
+                        allowed_values={option.allowed_values}
+                        show_definition={id === window.location.hash}
                     />)
             })
         }
         return result;
     }
 
-    renderParentTypes(col_span) {
-        const parent_types = this.state.parent_types;
+    renderParentTypes(colSpan) {
+        const parent_types = this.props.parent_types;
 
         if (0 === parent_types.length) {
             return;
@@ -59,10 +52,10 @@ export default class Type extends React.Component {
 
         return [
             <tr key={0}>
-                <th colSpan={col_span}>Parent types</th>
+                <th colSpan={colSpan}>Parent types</th>
             </tr>,
             <tr key={1}>
-                <td colSpan={col_span}>
+                <td colSpan={colSpan}>
                     {parent_types.map((parent_class, index) => {
                         const className = Type.getClassName(parent_class);
                         return <a key={index} href={'#' + className} className="mr-0-5"><code>{className}</code></a>
@@ -72,8 +65,8 @@ export default class Type extends React.Component {
         ]
     }
 
-    renderTypeExtensions(col_span) {
-        const type_extensions = this.state.type_extensions;
+    renderTypeExtensions(colSpan) {
+        const type_extensions = this.props.type_extensions;
 
         if (0 === type_extensions.length) {
             return;
@@ -81,10 +74,10 @@ export default class Type extends React.Component {
 
         return [
             <tr key={0}>
-                <th colSpan={col_span}>Type extensions</th>
+                <th colSpan={colSpan}>Type extensions</th>
             </tr>,
             <tr key={1}>
-                <td colSpan={col_span}>
+                <td colSpan={colSpan}>
                     {type_extensions.map((extensions_class, index) => {
                         const className = Type.getClassName(extensions_class);
                         return <a key={index} href={'#' + className} className="float-left mr-0-5"><code>{className}</code></a>;
@@ -95,9 +88,9 @@ export default class Type extends React.Component {
     }
 
     render() {
-        const {name, cls, api, block_prefix, options} = this.state;
-        const col_span = (0 !== options.own.length) + (0 !== options.overridden.length) + (0 !== options.parent.length) + (0 !== options.extension.length);
-        const col_width = (100 / col_span).toFixed(0) + '%';
+        const {name, cls, api, block_prefix, options} = this.props;
+        const colSpan = (0 !== options.own.length) + (0 !== options.overridden.length) + (0 !== options.parent.length) + (0 !== options.extension.length);
+        const col_width = (100 / colSpan).toFixed(0) + '%';
 
         return (
             <div>
@@ -125,11 +118,21 @@ export default class Type extends React.Component {
                         {0 !== options.parent.length && <td>{this.renderOptions(options.parent)}</td>}
                         {0 !== options.extension.length && <td>{this.renderOptions(options.extension)}</td>}
                     </tr>
-                    {this.renderParentTypes(col_span)}
-                    {this.renderTypeExtensions(col_span)}
+                    {this.renderParentTypes(colSpan)}
+                    {this.renderTypeExtensions(colSpan)}
                     </tbody>
                 </table>
             </div>
         );
     }
 }
+
+Type.propTypes = {
+    name: PropTypes.string.isRequired,
+    cls: PropTypes.string.isRequired,
+    api: PropTypes.string.isRequired,
+    block_prefix: PropTypes.string.isRequired,
+    options: PropTypes.object.isRequired,
+    parent_types: PropTypes.array,
+    type_extensions: PropTypes.array,
+};

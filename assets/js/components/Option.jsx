@@ -1,18 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import Type from "./Type";
 
-export default class Option extends React.Component {
+export default class Option extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cls: props.cls,
-            name: props.name,
-            required: props.required,
-            default_value: props.default_value,
-            is_lazy: props.is_lazy,
-            allowed_types: props.allowed_types,
-            allowed_values: props.allowed_values,
-            has_normalizer: props.has_normalizer,
             show_definition: props.show_definition
         };
 
@@ -32,13 +25,8 @@ export default class Option extends React.Component {
     };
 
     render() {
-        const {
-            cls, name, required,
-            default_value, is_lazy,
-            allowed_types, allowed_values,
-            has_normalizer, show_definition
-        } = this.state;
-
+        const {cls, name, required, default_value, is_lazy, allowed_types, allowed_values, has_normalizer} = this.props;
+        const show_definition = this.state.show_definition;
         const id = Type.getClassName(cls) + '/' + name;
         const stringify = JSON.stringify(default_value, null, ' ');
 
@@ -61,3 +49,14 @@ export default class Option extends React.Component {
         )
     }
 }
+
+Option.propTypes = {
+    cls: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    required: PropTypes.bool.isRequired,
+    default_value: PropTypes.any,
+    is_lazy: PropTypes.bool,
+    allowed_types: PropTypes.array,
+    allowed_values: PropTypes.array,
+    has_normalizer: PropTypes.bool,
+};

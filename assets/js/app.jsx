@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Type from './components/Type'
 
-class App extends React.Component {
+class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -108,14 +108,15 @@ class App extends React.Component {
 
                 <section className="main-content">
                     {types.map(type => (
-                        <Type key={type.name}
-                              name={type.name}
-                              cls={type.class}
-                              api={type.api}
-                              block_prefix={type.block_prefix}
-                              options={type.options}
-                              parent_types={type.parent_types}
-                              type_extensions={type.type_extensions}
+                        <Type
+                            key={type.name}
+                            name={type.name}
+                            cls={type.class}
+                            api={type.api}
+                            block_prefix={type.block_prefix}
+                            options={type.options}
+                            parent_types={type.parent_types}
+                            type_extensions={type.type_extensions}
                         />
                     ))}
 
