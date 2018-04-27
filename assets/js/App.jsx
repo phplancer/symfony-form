@@ -6,6 +6,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            versions: [],
+            selected: null,
             error: null,
             is_loaded: false,
             version: null,
@@ -18,37 +20,44 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch('data.json')
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        is_loaded: true,
-                        version: result.version,
-                        updated_at: result.updated_at,
-                        composer_info: result.composer_info,
-                        types: result.types,
-                        type_extensions: result.type_extensions,
-                        type_guessers: result.type_guessers
-                    });
+        fetch('docs.json')
+            .then(data => data.json())
+            .then(docs => {
+                this.setState({
+                    versions: docs.versions,
+                    selected: docs.versions[0],
+                });
 
-                    // after update state, check by hash to scroll in
-                    const hash = window.location.hash;
-                    if (hash) {
-                        window.location.hash = null;
-                        window.location.hash = hash;
-                    }
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        is_loaded: true,
-                        error
-                    });
-                }
-            )
+                fetch(docs.versions[0] + '.json')
+                    .then(data => data.json())
+                    .then((result) => {
+                            this.setState({
+                                is_loaded: true,
+                                version: result.version,
+                                updated_at: result.updated_at,
+                                composer_info: result.composer_info,
+                                types: result.types,
+                                type_extensions: result.type_extensions,
+                                type_guessers: result.type_guessers
+                            });
+
+                            // after update state, check by hash to scroll in
+                            const hash = window.location.hash;
+                            if (hash) {
+                                window.location.hash = null;
+                                window.location.hash = hash;
+                            }
+                        },
+                        // Note: it's important to handle errors here
+                        // instead of a catch() block so that we don't swallow
+                        // exceptions from actual bugs in components.
+                        (error) => {
+                            this.setState({
+                                is_loaded: true,
+                                error
+                            });
+                        });
+            });
     }
 
     render() {

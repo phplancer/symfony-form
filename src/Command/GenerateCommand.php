@@ -68,7 +68,8 @@ class GenerateCommand extends Command
             $data['types'][$i] += $this->getTypeOptions($metadata['class']);
         }
 
-        file_put_contents(__DIR__.'/../../docs/data.json', json_encode($data));
+        file_put_contents(__DIR__.'/../../docs/docs.json', json_encode(['versions' => [Kernel::VERSION]]));
+        file_put_contents(__DIR__.'/../../docs/'.Kernel::VERSION.'.json', json_encode($data));
     }
 
     private function getTypeOptions(string $class): array
