@@ -63,7 +63,7 @@ class App extends Component {
     render() {
         const {
             error, is_loaded,
-            version, updated_at, composer_info,
+            versions, version, updated_at, composer_info,
             types, type_extensions, type_guessers
         } = this.state;
 
@@ -86,6 +86,12 @@ class App extends Component {
                 </section>
 
                 <section className="main-content">
+                    <div className="sf-doc-versions-container">
+                        {versions.map((v) => (
+                            <code key={v}>{v}</code>
+                        ))}
+                    </div>
+
                     <h2 id="types">Built-in Field Types</h2>
                     <div style={{display: 'inline-block'}}>
                         {types.map(type => (
