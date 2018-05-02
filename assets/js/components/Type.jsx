@@ -19,12 +19,12 @@ export default class Type extends Component {
                 const className = Type.getClassName(cls);
                 result.push(
                     <div key={cls} className="option-group">
-                        <a href={'#' + className}>{className}</a>
+                        <a href={'#' + this.props.version + '/' + className}>{className}</a>
                     </div>
                 );
             }
             options[cls].map(option => {
-                const id = '#' + Type.getClassName(this.props.cls) + '/' + option.name;
+                const id = '#' + this.props.version + '/' + Type.getClassName(this.props.cls) + '/' + option.name;
                 result.push(
                     <Option
                         key={i++}
@@ -37,6 +37,7 @@ export default class Type extends Component {
                         allowed_types={option.allowed_types}
                         allowed_values={option.allowed_values}
                         show_definition={id === window.location.hash}
+                        version={this.props.version}
                     />)
             })
         }
@@ -58,7 +59,7 @@ export default class Type extends Component {
                 <td colSpan={colSpan}>
                     {parent_types.map((parent_class, index) => {
                         const className = Type.getClassName(parent_class);
-                        return <a key={index} href={'#' + className} className="mr-0-5"><code>{className}</code></a>
+                        return <a key={index} href={'#' + this.props.version + '/' + className} className="mr-0-5"><code>{className}</code></a>
                     })}
                 </td>
             </tr>
@@ -80,7 +81,7 @@ export default class Type extends Component {
                 <td colSpan={colSpan}>
                     {type_extensions.map((extensions_class, index) => {
                         const className = Type.getClassName(extensions_class);
-                        return <a key={index} href={'#' + className} className="float-left mr-0-5"><code>{className}</code></a>;
+                        return <a key={index} href={'#' + this.props.version + '/' + className} className="float-left mr-0-5"><code>{className}</code></a>;
                     })}
                 </td>
             </tr>
@@ -88,13 +89,13 @@ export default class Type extends Component {
     }
 
     render() {
-        const {name, cls, api, block_prefix, options} = this.props;
+        const {name, cls, api, block_prefix, options, version} = this.props;
         const colSpan = (0 !== options.own.length) + (0 !== options.overridden.length) + (0 !== options.parent.length) + (0 !== options.extension.length);
         const col_width = (100 / colSpan).toFixed(0) + '%';
 
         return (
             <div>
-                <h3 id={name}><a href={'#' + name}>{name}</a></h3>
+                <h3 id={version + '/' + name}><a href={'#' + version + '/' + name}>{name}</a></h3>
                 <blockquote>
                     <p>
                         Block prefix: <code>{block_prefix}</code><br/>

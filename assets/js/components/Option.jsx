@@ -25,9 +25,9 @@ export default class Option extends Component {
     };
 
     render() {
-        const {cls, name, required, default_value, is_lazy, allowed_types, allowed_values, has_normalizer} = this.props;
+        const {cls, name, required, default_value, is_lazy, allowed_types, allowed_values, has_normalizer, version} = this.props;
         const show_definition = this.state.show_definition;
-        const id = Type.getClassName(cls) + '/' + name;
+        const id = version + '/' + Type.getClassName(cls) + '/' + name;
         const stringify = JSON.stringify(default_value, null, ' ');
 
         return (

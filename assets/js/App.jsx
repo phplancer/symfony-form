@@ -7,10 +7,10 @@ class App extends Component {
         super(props);
         this.state = {
             versions: [],
-            selected: null,
+            version: null,
             error: null,
             is_loaded: false,
-            version: null,
+            symfony_version: null,
             updated_at: null,
             composer_info: null,
             types: [],
@@ -25,34 +25,36 @@ class App extends Component {
         fetch('docs.json')
             .then(data => data.json())
             .then(docs => {
+                const hash = window.location.hash;
+                const version = hash.indexOf('/') > -1 ? hash.split('/')[0].substr(1) : docs.versions[0];
+
                 this.setState({
                     versions: docs.versions,
-                    selected: docs.versions[0],
+                    version: version,
                 });
-
-                this.fetchDocs(docs.versions[0]);
+                this.fetchDocs(version);
             });
     }
 
     handleClick(version) {
-        if (version === this.state.selected) {
+        if (version === this.state.version) {
             return;
         }
 
         this.setState({
-            selected: version,
+            version: version,
         });
 
-        this.fetchDocs(version);
+        this.fetchDocs(version, true);
     };
 
-    fetchDocs(version) {
+    fetchDocs(version, clearHash = false) {
         fetch(version + '.json')
             .then(data => data.json())
             .then((result) => {
                     this.setState({
                         is_loaded: true,
-                        version: result.version,
+                        symfony_version: result.version,
                         updated_at: result.updated_at,
                         composer_info: result.composer_info,
                         types: result.types,
@@ -63,8 +65,8 @@ class App extends Component {
                     // after update state, check by hash to scroll in
                     const hash = window.location.hash;
                     if (hash) {
-                        window.location.hash = null;
-                        window.location.hash = hash;
+                        window.location.hash = '';
+                        if (!clearHash) window.location.hash = hash;
                     }
                 },
                 // Note: it's important to handle errors here
@@ -81,7 +83,7 @@ class App extends Component {
     render() {
         const {
             error, is_loaded,
-            versions, selected, version, updated_at, composer_info,
+            versions, version, symfony_version, updated_at, composer_info,
             types, type_extensions, type_guessers
         } = this.state;
 
@@ -106,35 +108,35 @@ class App extends Component {
                 <section className="main-content">
                     <div className="sf-doc-versions-container">
                         {versions.map((v) => (
-                            <code key={v} className={v === selected ? 'selected' : ''} onClick={() => this.handleClick(v)}>{v}</code>
+                            <code key={v} className={v === version ? 'selected' : ''} onClick={() => this.handleClick(v)}>{v}</code>
                         ))}
                     </div>
 
                     <h2 id="types">Built-in Field Types</h2>
                     <div style={{display: 'inline-block'}}>
                         {types.map(type => (
-                            <a key={type.name} href={'#' + type.name} title={type.class} className="float-left mr-0-5"><code>{type.name}</code></a>
+                            <a key={type.name} href={'#' + version + '/' + type.name} title={type.class} className="float-left mr-0-5"><code>{type.name}</code></a>
                         ))}
                     </div>
 
-                    <h2 id="types">Type Extensions</h2>
+                    <h2 id="type-extensions">Type Extensions</h2>
                     <div style={{display: 'inline-block'}}>
                         {type_extensions.map(type => (
-                            <a key={type.name} href={'#' + type.name} title={type.class} className="float-left mr-0-5"><code>{type.name}</code></a>
+                            <a key={type.name} href={'#' + version + '/' + type.name} title={type.class} className="float-left mr-0-5"><code>{type.name}</code></a>
                         ))}
                     </div>
 
-                    <h2 id="types">Type Guessers</h2>
+                    <h2 id="type-guessers">Type Guessers</h2>
                     <div style={{display: 'inline-block'}}>
                         {type_guessers.map(type => (
-                            <a key={type.name} href={'#' + type.name} title={type.class} className="float-left mr-0-5"><code>{type.name}</code></a>
+                            <a key={type.name} href={'#' + version + '/' + type.name} title={type.class} className="float-left mr-0-5"><code>{type.name}</code></a>
                         ))}
                     </div>
                 </section>
 
                 <section className="build-info-container">
                     <div className="build-info">
-                        <div>Symfony version: <strong>{version}</strong> <span className="composer-info-container"> ( <span className="composer-info-label">Composer Info</span> ) <div className="composer-info"><pre><code>{composer_info}</code></pre></div></span></div>
+                        <div>Symfony version: <strong>{symfony_version}</strong> <span className="composer-info-container"> ( <span className="composer-info-label">Composer Info</span> ) <div className="composer-info"><pre><code>{composer_info}</code></pre></div></span></div>
                         <div>Last update: <strong>{updated_at}</strong></div>
                     </div>
                 </section>
@@ -150,6 +152,7 @@ class App extends Component {
                             options={type.options}
                             parent_types={type.parent_types}
                             type_extensions={type.type_extensions}
+                            version={version}
                         />
                     ))}
 
