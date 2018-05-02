@@ -17,6 +17,8 @@ class App extends Component {
             type_extensions: [],
             type_guessers: []
         };
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -28,42 +30,58 @@ class App extends Component {
                     selected: docs.versions[0],
                 });
 
-                fetch(docs.versions[0] + '.json')
-                    .then(data => data.json())
-                    .then((result) => {
-                            this.setState({
-                                is_loaded: true,
-                                version: result.version,
-                                updated_at: result.updated_at,
-                                composer_info: result.composer_info,
-                                types: result.types,
-                                type_extensions: result.type_extensions,
-                                type_guessers: result.type_guessers
-                            });
-
-                            // after update state, check by hash to scroll in
-                            const hash = window.location.hash;
-                            if (hash) {
-                                window.location.hash = null;
-                                window.location.hash = hash;
-                            }
-                        },
-                        // Note: it's important to handle errors here
-                        // instead of a catch() block so that we don't swallow
-                        // exceptions from actual bugs in components.
-                        (error) => {
-                            this.setState({
-                                is_loaded: true,
-                                error
-                            });
-                        });
+                this.fetchDocs(docs.versions[0]);
             });
+    }
+
+    handleClick(version) {
+        if (version === this.state.selected) {
+            return;
+        }
+
+        this.setState({
+            selected: version,
+        });
+
+        this.fetchDocs(version);
+    };
+
+    fetchDocs(version) {
+        fetch(version + '.json')
+            .then(data => data.json())
+            .then((result) => {
+                    this.setState({
+                        is_loaded: true,
+                        version: result.version,
+                        updated_at: result.updated_at,
+                        composer_info: result.composer_info,
+                        types: result.types,
+                        type_extensions: result.type_extensions,
+                        type_guessers: result.type_guessers
+                    });
+
+                    // after update state, check by hash to scroll in
+                    const hash = window.location.hash;
+                    if (hash) {
+                        window.location.hash = null;
+                        window.location.hash = hash;
+                    }
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        is_loaded: true,
+                        error
+                    });
+                });
     }
 
     render() {
         const {
             error, is_loaded,
-            versions, version, updated_at, composer_info,
+            versions, selected, version, updated_at, composer_info,
             types, type_extensions, type_guessers
         } = this.state;
 
@@ -88,7 +106,7 @@ class App extends Component {
                 <section className="main-content">
                     <div className="sf-doc-versions-container">
                         {versions.map((v) => (
-                            <code key={v}>{v}</code>
+                            <code key={v} className={v === selected ? 'selected' : ''} onClick={() => this.handleClick(v)}>{v}</code>
                         ))}
                     </div>
 
