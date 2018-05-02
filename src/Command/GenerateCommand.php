@@ -68,7 +68,17 @@ class GenerateCommand extends Command
             $data['types'][$i] += $this->getTypeOptions($metadata['class']);
         }
 
-        file_put_contents(__DIR__.'/../../docs/docs.json', json_encode(['versions' => [Kernel::VERSION]]));
+        // Update docs.json
+        $docsFile = __DIR__.'/../../docs/docs.json';
+        $docsData = json_decode(file_get_contents($docsFile), true);
+        foreach ($docsData['versions'] as $i => $version) {
+            if (0 === strpos($version, substr(Kernel::VERSION, 0, 3))) {
+                $docsData['versions'][$i] = Kernel::VERSION;
+            }
+        }
+        file_put_contents($docsFile, json_encode($docsData));
+
+        // Update current release doc file
         file_put_contents(__DIR__.'/../../docs/'.Kernel::VERSION.'.json', json_encode($data));
     }
 
