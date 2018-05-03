@@ -78,6 +78,7 @@ class GenerateCommand extends Command
             if (0 === strpos($v, substr($version, 0, 3))) {
                 if ($v !== $version && file_exists($filename = __DIR__.'/../../docs/'.$v.'.json')) {
                     unlink($filename);
+                    shell_exec("git rm $filename");
                 }
                 $docsData['versions'][$i] = $version;
                 break;
