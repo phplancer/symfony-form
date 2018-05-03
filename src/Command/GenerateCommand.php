@@ -42,8 +42,10 @@ class GenerateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $version = false !== strpos(Kernel::VERSION, '-DEV') ? 'master' : Kernel::VERSION;
+
         $data = [
-            'version' => Kernel::VERSION,
+            'version' => $version,
             'updated_at' => date('D, d M Y'),
             'composer_info' => $this->getComposerInfo(),
         ];
@@ -71,15 +73,16 @@ class GenerateCommand extends Command
         // Update docs.json
         $docsFile = __DIR__.'/../../docs/docs.json';
         $docsData = json_decode(file_get_contents($docsFile), true);
-        foreach ($docsData['versions'] as $i => $version) {
-            if (0 === strpos($version, substr(Kernel::VERSION, 0, 3))) {
-                $docsData['versions'][$i] = Kernel::VERSION;
+        foreach ($docsData['versions'] as $i => $v) {
+            if (0 === strpos($v, substr($version, 0, 3))) {
+                $docsData['versions'][$i] = $version;
+                break;
             }
         }
         file_put_contents($docsFile, json_encode($docsData));
 
         // Update current release doc file
-        file_put_contents(__DIR__.'/../../docs/'.Kernel::VERSION.'.json', json_encode($data));
+        file_put_contents(__DIR__.'/../../docs/'.$version.'.json', json_encode($data));
     }
 
     private function getTypeOptions(string $class): array
