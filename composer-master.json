@@ -8,19 +8,19 @@
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^1.8",
         "doctrine/orm": "^2.6",
-        "symfony/console": "^dev-master",
+        "symfony/console": "dev-master",
         "symfony/flex": "^1.0",
-        "symfony/form": "^dev-master",
-        "symfony/framework-bundle": "^dev-master",
-        "symfony/process": "^dev-master",
-        "symfony/security-csrf": "^dev-master",
-        "symfony/validator": "^dev-master",
+        "symfony/form": "dev-master",
+        "symfony/framework-bundle": "dev-master",
+        "symfony/process": "dev-master",
+        "symfony/security-csrf": "dev-master",
+        "symfony/validator": "dev-master",
         "symfony/webpack-encore-pack": "^1.0",
-        "symfony/yaml": "^dev-master"
+        "symfony/yaml": "dev-master"
     },
     "require-dev": {
-        "symfony/dotenv": "^dev-master",
-        "symfony/var-dumper": "^dev-master"
+        "symfony/dotenv": "dev-master",
+        "symfony/var-dumper": "dev-master"
     },
     "minimum-stability": "dev",
     "config": {
