@@ -1,4 +1,6 @@
 # Symfony Forms Reference Generator
 
 TODO:
-- [ ] Generate content per Symfony version (LTS, CURRENT, MASTER)
+- [X] Generate content per Symfony version (LTS, CURRENT, MASTER).
+- [ ] Show diff between versions.
+- [ ] Populate options docs description from original symfony-docs repo.
