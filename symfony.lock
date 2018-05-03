@@ -144,7 +144,7 @@
         "version": "v1.7.0"
     },
     "symfony/polyfill-php72": {
-        "version": "v1.7.0"
+        "version": "1.8-dev"
     },
     "symfony/process": {
         "version": "v4.0.4"
