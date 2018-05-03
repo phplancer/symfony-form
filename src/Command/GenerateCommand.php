@@ -50,6 +50,7 @@ class GenerateCommand extends Command
             'composer_info' => $this->getComposerInfo(),
         ];
 
+        // Generate docs content
         $result = $this->runDebugFormCommand();
         $result['types'] = array_merge($result['builtin_form_types'], $result['service_form_types']);
         unset($result['builtin_form_types'], $result['service_form_types']);
@@ -70,18 +71,21 @@ class GenerateCommand extends Command
             $data['types'][$i] += $this->getTypeOptions($metadata['class']);
         }
 
-        // Update docs.json
+        // Update versions in docs.json
         $docsFile = __DIR__.'/../../docs/docs.json';
         $docsData = json_decode(file_get_contents($docsFile), true);
         foreach ($docsData['versions'] as $i => $v) {
             if (0 === strpos($v, substr($version, 0, 3))) {
+                if ($v !== $version && file_exists($filename = __DIR__.'/../../docs/'.$v.'.json')) {
+                    unlink($filename);
+                }
                 $docsData['versions'][$i] = $version;
                 break;
             }
         }
         file_put_contents($docsFile, json_encode($docsData));
 
-        // Update current release doc file
+        // Save generated docs content
         file_put_contents(__DIR__.'/../../docs/'.$version.'.json', json_encode($data));
     }
 
