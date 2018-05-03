@@ -71,7 +71,8 @@ class GenerateCommand extends Command
             $data['types'][$i] += $this->getTypeOptions($metadata['class']);
         }
 
-        // Update versions in docs.json
+        // Update versions list in docs.json
+        $updated = false;
         $docsFile = __DIR__.'/../../docs/docs.json';
         $docsData = json_decode(file_get_contents($docsFile), true);
         foreach ($docsData['versions'] as $i => $v) {
@@ -80,8 +81,14 @@ class GenerateCommand extends Command
                     unlink($filename);
                 }
                 $docsData['versions'][$i] = $version;
+                $updated = true;
                 break;
             }
+        }
+        if (!$updated) {
+            // Add new version to docs file
+            $master = array_shift($docsData['versions']);
+            array_unshift($docsData['versions'], $master, $version);
         }
         file_put_contents($docsFile, json_encode($docsData));
 
