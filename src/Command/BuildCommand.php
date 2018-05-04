@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Symfony Form Reference Generator.
+ * This file is part of the Symfony Form Reference Generator project.
  *
  * (c) Yonel Ceruto <yonelceruto@gmail.com>
  *
@@ -21,13 +21,13 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 /**
- * Generates the Form docs reference.
+ * Build the Form docs reference.
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class GenerateCommand extends Command
+class BuildCommand extends Command
 {
-    protected static $defaultName = 'generate';
+    protected static $defaultName = 'app:build';
 
     /** @var Command */
     private $command;
@@ -132,7 +132,7 @@ class GenerateCommand extends Command
         $result = json_decode($bufferedOutput->fetch(), !$option);
 
         if ($option) {
-            // necessary to differentiate object from array on default definition
+            // necessary to differentiate object from array in "default" property definition
             return (array) $result;
         }
 
