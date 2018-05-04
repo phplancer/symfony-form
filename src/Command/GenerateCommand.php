@@ -21,7 +21,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 /**
- * Generate the form reference file.
+ * Generates the Form docs reference.
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
