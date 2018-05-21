@@ -103,13 +103,12 @@ export default class Type extends Component {
                     </p>
                 </blockquote>
                 <table>
-                    <caption>Options</caption>
                     <thead>
                     <tr>
-                        {0 !== options.own.length && <th width={col_width}>Own</th>}
-                        {0 !== options.overridden.length && <th width={col_width}>Overridden</th>}
-                        {0 !== options.parent.length && <th width={col_width}>Parent</th>}
-                        {0 !== options.extension.length && <th width={col_width}>Extension</th>}
+                        {0 !== options.own.length && <th width={col_width}>Options</th>}
+                        {0 !== options.overridden.length && <th width={col_width}>Overridden options</th>}
+                        {0 !== options.parent.length && <th width={col_width}>Parent options</th>}
+                        {0 !== options.extension.length && <th width={col_width}>Extension options</th>}
                     </tr>
                     </thead>
                     <tbody>

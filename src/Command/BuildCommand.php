@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Symfony Form Reference Generator project.
- *
- * (c) Yonel Ceruto <yonelceruto@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace App\Command;
 
 use Symfony\Component\Console\Command\Command;
@@ -20,11 +11,6 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-/**
- * Build the Form docs reference.
- *
- * @author Yonel Ceruto <yonelceruto@gmail.com>
- */
 class BuildCommand extends Command
 {
     protected static $defaultName = 'app:build';
@@ -111,7 +97,6 @@ class BuildCommand extends Command
                         'name' => $option,
                     ] + $this->runDebugFormCommand($class, $option);
                 }
-
             }
         }
 
