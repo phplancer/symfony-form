@@ -67,6 +67,10 @@ h3 {
   z-index: 1;
 }
 
+code.deprecated {
+  text-decoration-line: line-through;
+}
+
 .selected {
   code {
     color: $code-bg-color;

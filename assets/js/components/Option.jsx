@@ -25,10 +25,11 @@ export default class Option extends Component {
     };
 
     render() {
-        const {cls, name, required, default_value, is_lazy, allowed_types, allowed_values, has_normalizer, version} = this.props;
+        const {cls, name, required, default_value, deprecated, deprecation_message, is_lazy, allowed_types, allowed_values, has_normalizer, version} = this.props;
         const show_definition = this.state.show_definition;
         const id = version + '/' + Type.getClassName(cls) + '/' + name;
         const stringify = JSON.stringify(default_value, null, ' ');
+        const final_deprecation_message = deprecation_message ? deprecation_message : 'Some values has been deprecated.';
 
         return (
             <div title={required ? 'Required' : ''}
@@ -36,8 +37,9 @@ export default class Option extends Component {
                  onBlur={this.handleBlur}
             >
                 <a href={'#' + id} id={id} className="option-link">﹟</a>
-                <a href={'#' + id} onClick={this.handleClick}><code>{name}</code>{required ? '*' : ''}</a>
+                <a href={'#' + id} onClick={this.handleClick}><code className={deprecated && 'deprecated'}>{name}</code>{required ? '*' : ''}</a>
                 <div className="option-definition" hidden={!show_definition}>
+                    {deprecated && <div>- Deprecated! {final_deprecation_message}</div>}
                     {undefined !== default_value && <div>- Default value: {'{}' === stringify ? '[object]' : stringify}</div>}
                     {is_lazy && <div>- Has lazy default function.</div>}
                     {allowed_types && <div>- Allowed types: {JSON.stringify(allowed_types, null, ' ')}</div>}
@@ -55,6 +57,8 @@ Option.propTypes = {
     name: PropTypes.string.isRequired,
     required: PropTypes.bool.isRequired,
     default_value: PropTypes.any,
+    deprecated: PropTypes.bool,
+    deprecation_message: PropTypes.string,
     is_lazy: PropTypes.bool,
     allowed_types: PropTypes.array,
     allowed_values: PropTypes.array,

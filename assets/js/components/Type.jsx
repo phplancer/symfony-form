@@ -31,6 +31,8 @@ export default class Type extends Component {
                         cls={this.props.cls}
                         name={option.name}
                         required={option.required}
+                        deprecated={option.deprecated}
+                        deprecation_message={option.deprecation_message}
                         is_lazy={option.is_lazy}
                         has_normalizer={option.has_normalizer}
                         default_value={option.default}
