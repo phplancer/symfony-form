@@ -2,6 +2,6 @@
 
 TODO:
 - [X] Generate content per Symfony version (LTS, CURRENT, MASTER).
-- [ ] Show deprecated options.
+- [X] Highlight deprecated options.
 - [ ] Show diff between versions.
 - [ ] Add option link to official docs. 
