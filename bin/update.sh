@@ -20,9 +20,18 @@ echo "Building 4.0 docs..."
 ./bin/console app:build
 echo "Done."
 
+# 4.1
+echo "Updating 4.1 dependencies..."
+mv composer.json composer-4.0.json
+mv composer-4.1.json composer.json
+composer update
+echo "Building 4.1 docs..."
+./bin/console app:build
+echo "Done."
+
 # master
 echo "Updating MASTER dependencies..."
-mv composer.json composer-4.0.json
+mv composer.json composer-4.1.json
 mv composer-master.json composer.json
 composer update
 echo "Building MASTER docs..."

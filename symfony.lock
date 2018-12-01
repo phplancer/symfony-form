@@ -86,6 +86,9 @@
             "ref": "9f94d3ea453cd8a3b95db7f82592d7344fe3a76a"
         }
     },
+    "symfony/contracts": {
+        "version": "v1.0.0"
+    },
     "symfony/debug": {
         "version": "v4.0.4"
     },
@@ -140,17 +143,11 @@
     "symfony/intl": {
         "version": "v4.0.4"
     },
-    "symfony/lts": {
-        "version": "4-dev"
-    },
     "symfony/options-resolver": {
         "version": "v4.0.4"
     },
     "symfony/orm-pack": {
         "version": "v1.0.5"
-    },
-    "symfony/polyfill-ctype": {
-        "version": "v1.8.0"
     },
     "symfony/polyfill-intl-icu": {
         "version": "v1.7.0"
@@ -160,9 +157,6 @@
     },
     "symfony/polyfill-php72": {
         "version": "v1.10.0"
-    },
-    "symfony/process": {
-        "version": "v4.0.4"
     },
     "symfony/property-access": {
         "version": "v4.0.4"
@@ -182,20 +176,14 @@
     "symfony/security-csrf": {
         "version": "v4.0.4"
     },
-    "symfony/translation": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "1fb02a6e1c8f3d4232cce485c9afa868d63b115a"
-        }
-    },
     "symfony/validator": {
         "version": "v4.0.4"
     },
     "symfony/var-dumper": {
         "version": "v4.0.4"
+    },
+    "symfony/var-exporter": {
+        "version": "v4.2.0"
     },
     "symfony/webpack-encore-pack": {
         "version": "1.0",
