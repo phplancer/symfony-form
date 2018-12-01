@@ -10,21 +10,21 @@
         "ext-json": "*",
         "doctrine/doctrine-bundle": "^1.10",
         "doctrine/orm": "^2.6",
-        "symfony/console": "*",
+        "symfony/console": "4.3.*",
         "symfony/flex": "^1.1",
-        "symfony/form": "*",
-        "symfony/framework-bundle": "*",
-        "symfony/http-kernel": "*",
-        "symfony/process": "*",
-        "symfony/security-csrf": "*",
-        "symfony/translation": "*",
-        "symfony/validator": "*",
+        "symfony/form": "4.3.*",
+        "symfony/framework-bundle": "4.3.*",
+        "symfony/http-kernel": "4.3.*",
+        "symfony/process": "4.3.*",
+        "symfony/security-csrf": "4.3.*",
+        "symfony/translation": "4.3.*",
+        "symfony/validator": "4.3.*",
         "symfony/webpack-encore-pack": "^1.0",
-        "symfony/yaml": "*"
+        "symfony/yaml": "4.3.*"
     },
     "require-dev": {
-        "symfony/dotenv": "*",
-        "symfony/var-dumper": "*"
+        "symfony/dotenv": "4.3.*",
+        "symfony/var-dumper": "4.3.*"
     },
     "minimum-stability": "dev",
     "config": {
@@ -66,8 +66,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
-            "require": "4.3.*"
+            "allow-contrib": false
         }
     }
 }
