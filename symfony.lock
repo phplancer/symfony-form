@@ -158,6 +158,9 @@
     "symfony/polyfill-php72": {
         "version": "v1.10.0"
     },
+    "symfony/process": {
+        "version": "v3.4.19"
+    },
     "symfony/property-access": {
         "version": "v4.0.4"
     },
