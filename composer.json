@@ -5,6 +5,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
         "doctrine/doctrine-bundle": "^1.10",
@@ -13,8 +14,10 @@
         "symfony/flex": "^1.1",
         "symfony/form": "*",
         "symfony/framework-bundle": "*",
-        "symfony/security-csrf": "*",
+        "symfony/http-kernel": "*",
         "symfony/process": "*",
+        "symfony/security-csrf": "*",
+        "symfony/translation": "*",
         "symfony/validator": "*",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "*"
