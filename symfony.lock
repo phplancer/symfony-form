@@ -65,14 +65,14 @@
     "psr/log": {
         "version": "1.0.2"
     },
-    "psr/simple-cache": {
-        "version": "1.0.0"
-    },
     "symfony/asset": {
         "version": "v3.4.13"
     },
     "symfony/cache": {
         "version": "v4.0.4"
+    },
+    "symfony/cache-contracts": {
+        "version": "v1.1.5"
     },
     "symfony/class-loader": {
         "version": "v3.4.19"
@@ -90,7 +90,7 @@
         }
     },
     "symfony/contracts": {
-        "version": "v1.0.0"
+        "version": "v1.1.5"
     },
     "symfony/debug": {
         "version": "v4.0.4"
@@ -104,8 +104,14 @@
     "symfony/dotenv": {
         "version": "v4.0.4"
     },
+    "symfony/error-catcher": {
+        "version": "4.4-dev"
+    },
     "symfony/event-dispatcher": {
         "version": "v4.0.4"
+    },
+    "symfony/event-dispatcher-contracts": {
+        "version": "v1.1.5"
     },
     "symfony/filesystem": {
         "version": "v4.0.4"
@@ -146,6 +152,9 @@
     "symfony/intl": {
         "version": "v4.0.4"
     },
+    "symfony/mime": {
+        "version": "v4.3.2"
+    },
     "symfony/options-resolver": {
         "version": "v4.0.4"
     },
@@ -155,11 +164,17 @@
     "symfony/polyfill-intl-icu": {
         "version": "v1.7.0"
     },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.11.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.7.0"
     },
     "symfony/polyfill-php72": {
         "version": "v1.10.0"
+    },
+    "symfony/polyfill-php73": {
+        "version": "v1.11.0"
     },
     "symfony/process": {
         "version": "v3.4.19"
@@ -182,6 +197,9 @@
     "symfony/security-csrf": {
         "version": "v4.0.4"
     },
+    "symfony/service-contracts": {
+        "version": "v1.1.5"
+    },
     "symfony/translation": {
         "version": "3.3",
         "recipe": {
@@ -190,6 +208,9 @@
             "version": "3.3",
             "ref": "1fb02a6e1c8f3d4232cce485c9afa868d63b115a"
         }
+    },
+    "symfony/translation-contracts": {
+        "version": "v1.1.5"
     },
     "symfony/validator": {
         "version": "v4.0.4"
