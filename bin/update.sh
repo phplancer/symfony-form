@@ -12,19 +12,39 @@ echo "Building 3.4 docs..."
 ./bin/console app:build
 echo "Done."
 
-# 4.2
-echo "Updating 4.2 dependencies..."
+# 4.3
+echo "Updating 4.3 dependencies..."
 mv composer.json composer-3.4.json
-mv composer-4.2.json composer.json
+mv composer-4.3.json composer.json
 rm -rf vendor && rm composer.lock
 composer update
-echo "Building 4.2 docs..."
+echo "Building 4.3 docs..."
+./bin/console app:build
+echo "Done."
+
+# 4.4
+echo "Updating 4.4 dependencies..."
+mv composer.json composer-4.3.json
+mv composer-4.4.json composer.json
+rm -rf vendor && rm composer.lock
+composer update
+echo "Building 4.4 docs..."
+./bin/console app:build
+echo "Done."
+
+# 5.0
+echo "Updating 5.0 dependencies..."
+mv composer.json composer-4.4.json
+mv composer-5.0.json composer.json
+rm -rf vendor && rm composer.lock
+composer update
+echo "Building 5.0 docs..."
 ./bin/console app:build
 echo "Done."
 
 # master
 echo "Updating MASTER dependencies..."
-mv composer.json composer-4.2.json
+mv composer.json composer-5.0.json
 mv composer-master.json composer.json
 rm -rf vendor && rm composer.lock
 composer update
